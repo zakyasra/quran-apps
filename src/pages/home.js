@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import imageDark from "../assets/bismillahh.png";
@@ -12,7 +13,7 @@ const Home = ({ mode }) => {
   const el = useRef(null);
 
   const _getDataset = async () => {
-    const { data, error } = await axios.get("https://equran.id/api/v2/surat");
+    const { data } = await axios.get("https://equran.id/api/v2/surat");
     if (data) {
       setDataset(data);
     }
@@ -20,7 +21,7 @@ const Home = ({ mode }) => {
 
   useEffect(() => {
     _getDataset();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const typed = new Typed(el.current, {
@@ -47,7 +48,7 @@ const Home = ({ mode }) => {
       <div className="container">
         <div className="image w-100 d-flex justify-content-center my-5">
           <img
-            src={mode == "dark" ? imageLight : imageDark}
+            src={mode === "dark" ? imageLight : imageDark}
             alt="tes"
             className="image"
           />
